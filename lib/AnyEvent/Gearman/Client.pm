@@ -23,13 +23,37 @@ no Any::Moose;
 sub add_task {
     my $self = shift;
     
-    return $self->_add_task('', @_)
+    return $self->_add_task('normal', @_)
+}
+
+sub add_task_low {
+    my $self = shift;
+    
+    return $self->_add_task('low', @_)
+}
+
+sub add_task_high {
+    my $self = shift;
+    
+    return $self->_add_task('high', @_)
 }
 
 sub add_task_bg {
     my $self = shift;
     
-    return $self->_add_task('bg', @_)
+    return $self->_add_task('bgnormal', @_)
+}
+
+sub add_task_low_bg {
+    my $self = shift;
+    
+    return $self->_add_task('bglow', @_)
+}
+
+sub add_task_high_bg {
+    my $self = shift;
+    
+    return $self->_add_task('bghigh', @_)
 }
 
 sub _add_task {

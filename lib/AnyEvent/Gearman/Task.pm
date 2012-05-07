@@ -64,7 +64,27 @@ sub BUILD {
 
 sub pack_req {
     my ($self, $type) = @_;
-    $type = $type && $type eq 'bg'? SUBMIT_JOB_BG : SUBMIT_JOB;
+    if ( !$type or $type eq 'normal' ) {
+        $type = SUBMIT_JOB;
+    }
+    if ( $type eq 'high' ) {
+        $type = SUBMIT_JOB_HIGH;
+    }
+    elsif ( $type eq 'low' ) {
+        $type = SUBMIT_JOB_LOW;
+    }
+    elsif ( $type eq 'bghigh' ) {
+        $type = SUBMIT_JOB_HIGH_BG;
+    }
+    elsif ( $type eq 'bg' or $type eq 'bignormal' ) {
+        $type = SUBMIT_JOB_BG;
+    }
+    elsif ( $type eq 'bglow' ) {
+        $type = SUBMIT_JOB_LOW_BG;
+    }
+    else {
+        $type = 'SUBMIT_JOB';
+    }
 
     my $data = $self->function . "\0"
              . $self->unique . "\0"
